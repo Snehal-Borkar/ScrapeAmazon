@@ -1,0 +1,51 @@
+{% extends 'top_product/base.html' %}
+{% block content %}
+<div class='row'>
+    <div class ='col-sm-8'>
+        <h4 class='text-center alert alert-info'>Show Products</h4>
+        {% if products %}
+        <h4>Table</h4>
+          <table class="table table-hover">
+            <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Image</th>
+                  <th scope="col">Rating</th>
+                  <th scope="col">User_Rated</th>
+                  <th scope="col">Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                  {%for item in products %}
+                <tr>
+                  <th scope="row">{{item.id}}</th>
+                  <td>{{item.name}}</td>
+                  <td><img src="{{item.image}}" style="width:100px;height:100px;object-fit: scale-down;"></td>
+                  <td>{{item.rating}}</td> 
+                  <td>{{item.user_rated}}</td> 
+                  <td>{{item.price}}</td> 
+                </tr> 
+                   {% endfor %}
+              </tbody>
+          </table>     
+        {% else %}
+        <h4>No data</h4>
+        {% endif %}       
+    </div>
+
+  <div class ='col-sm-4'>
+    <form action="{% url 'search' %}" method="get">
+    <div class="input-group">
+      <input name="search"  type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+        aria-describedby="search-addon" />
+      <button type="submit" class="btn btn-outline-primary">search</button>
+    </div>
+  </form>
+  </div>
+</div>    
+
+
+
+
+{% endblock content %}

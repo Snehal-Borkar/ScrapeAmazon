@@ -1,0 +1,15 @@
+{% extends 'top_product/base.html' %}
+{% block content %}
+
+{% if query %}
+<h1>Search for "{{query }}"</h1> 
+<h3>{% with results.count as total_results %}
+    Found{{total_results}} results{{total_results|pluralize}}
+    {%endwith%}</h3>
+{%for x in results %}
+<h3>{{x}}</h3>
+{%endfor%}
+{% else %}
+<h4>No data</h4>
+{% endif %}
+{% endblock content %}
