@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from top_product import views
 
-# app_name = "top_product"
+# app_name ='top_product'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.add_show),
     path('scrapdata/',views.scrapdata),
-    path('search/',views.search,name='search')
+    path('search/',views.search,name='search'),
+    path('search/<int:id>/',views.searched,name="detail")
 ]

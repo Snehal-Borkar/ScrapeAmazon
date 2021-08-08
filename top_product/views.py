@@ -11,6 +11,18 @@ def add_show(request):
     return render (request,'top_product/top_product.html',{'products':data,}) 
     # print(alls)
 
+def search(request):
+    query=None
+    results=[]
+    if request.method=="GET":
+        query=request.GET.get('search')
+        results=Products.objects.filter(name__icontains=query)
+        data=(Products.objects.filter().order_by('-rating')) 
+    return render(request,'top_product/top_product.html',{'query':query, 'results':results ,'products':data,})
+
+def searched(request,id):
+       item=Products.objects.get(pk=id)
+       return render(request,'top_product/searched_item.html',{'item':item,})
 
 def scrapdata(request):
     url = "https://www.amazon.in/s?i=electronics&bbn=976419031&rh=n%3A976419031%2Cp_89%3Arealme&dc&qid=1628231459&rnid=3837712031&ref=sr_pg_1"
@@ -39,10 +51,3 @@ def scrapdata(request):
         pro_data.save()
     return HttpResponseRedirect('/') 
 
-def search(request):
-    query=None
-    results=[]
-    if request.method=="GET":
-        query=request.GET.get('search')
-        results=Products.objects.filter(name__icontains=query)
-    return render(request,'top_product/searched_item.html',{'query':query, 'results':results})

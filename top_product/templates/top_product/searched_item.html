@@ -1,15 +1,30 @@
 {% extends 'top_product/base.html' %}
 {% block content %}
+<div class= " "  >
+<div class='row'>
+    <div class ='col-sm-4'>
+        <h4 class='text-center alert alert-info'>Searched Product</h4>
+         
+         
+            <div class="card  m-5 " style="width: 18rem;">
+              <img src="{{item.image}}" class="card-img-top mt-1 "  style="width:275px;height:300px;object-fit: scale-down;" alt="...">
+              <div class="card-body">
+                <p class="card-text fw-bolder">{{item.name}}</p>
+                <span style="color:orange">{{item.rating}}</span> out of 5  
+                    <pre class=d-inline>   {{item.user_rated}} rated </pre>
+                <p class="mt-1">price:<span class=" m-1 d-inline fs-5 "style=color:red;>{{item.price}}</span> </p>
+              </div>
+            </div>
+          
+            
+          
+              
+    </div>   
+           
+  </div>
+     
 
-{% if query %}
-<h1>Search for "{{query }}"</h1> 
-<h3>{% with results.count as total_results %}
-    Found{{total_results}} results{{total_results|pluralize}}
-    {%endwith%}</h3>
-{%for x in results %}
-<h3>{{x}}</h3>
-{%endfor%}
-{% else %}
-<h4>No data</h4>
-{% endif %}
+ 
+
+
 {% endblock content %}
