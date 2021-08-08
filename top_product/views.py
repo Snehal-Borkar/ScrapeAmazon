@@ -17,7 +17,7 @@ def search(request):
     if request.method=="GET":
         query=request.GET.get('search')
         results=Products.objects.filter(name__icontains=query)
-        data=(Products.objects.filter().order_by('-rating')) 
+        data=(Products.objects.filter().order_by('-rating'))[:5]
     return render(request,'top_product/top_product.html',{'query':query, 'results':results ,'products':data,})
 
 def searched(request,id):
